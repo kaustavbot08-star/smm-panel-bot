@@ -17,18 +17,6 @@ required_channels = ['@pythonViewbooster']  # more channel same as
 payment_channel = "@pythonViewbooster"
 
 
-# Function to check if the user is a member of all required channels
-def is_member_of_channel(user_id):
-  for channel in required_channels:
-    try:
-      status = bot.get_chat_member(channel, user_id).status
-      if status not in ['member', 'administrator', 'creator']:
-        return False
-    except Exception as e:
-      print(f"Error checking channel membership for {channel}: {e}")
-      return False
-  return True
-
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -64,19 +52,6 @@ def send_welcome(message):
 
     insertUser(user_id, initial_data)
 
-  if not is_member_of_channel(user_id):
-    markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    button1 = KeyboardButton("/start")
-
-    markup.add(button1)
-
-    bot.send_message(
-        user_id,
-        "You need to join the following channels before continuing:\n- @pythonViewbooster",
-        parse_mode='HTML',
-        reply_markup=markup  # Pass the markup to the reply
-    )
-    return
 
   userData = getData(user_id)
   # userData = json.loads(userData)

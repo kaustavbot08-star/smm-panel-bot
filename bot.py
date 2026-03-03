@@ -6,7 +6,7 @@ from telebot.types import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardBut
 from functions import insertUser, track_exists, addBalance, cutBalance, getData, addRefCount, isExists, setWelcomeStaus, setReferredStatus
 
 bot_token = "HereBotToken" #bot token from @BotFather
-SmmPanelApi = "e2789bb7eb4da3e5e66e9f46e8f1f026" # api key from eadysmmpanel.com you can change api link
+SmmPanelApi = "e2789bb7eb4da3e5e66e9f46e8f1f026" # api key from easysmmpanel.com you can change api link
 bot = telebot.TeleBot(bot_token)
 admin_user_id = 5337150824
 welcome_bonus = 100
@@ -374,3 +374,4 @@ if __name__ == '__main__':
       # Optionally send a message to the admin about the exception.
       bot.send_message(admin_user_id, f"Bot polling failed: {e}")
       time.sleep(10)  # Wait a bit before restarting the bot polling
+

@@ -119,3 +119,22 @@ Your bot is now hosted on a VPS and will run continuously in the background. Ple
 If you have any questions or need assistance, feel free to message us directly on Telegram: [KSCoder](https://t.me/kscoder)
 
 Thank you for using our Simple View Bot. Increase your post views effortlessly!
+
+## Deploy on Render (Free Web Service)
+
+You can deploy this bot for free 24/7 using [Render](https://render.com/). To run on Render's free tier, you must deploy as a **Web Service**, which requires binding to a port. Since this bot uses polling instead of webhooks, you can run a dummy web server alongside the bot.
+
+### Steps to Deploy on Render
+
+1. Create a free account on [Render](https://render.com/).
+2. Fork this repository or push your bot code to a GitHub/GitLab repository.
+3. On Render, click on **New** and select **Web Service**.
+4. Connect your GitHub/GitLab account and select the repository where your bot is stored.
+5. In the service settings:
+   - **Name**: Give your bot a name (e.g., `simple-view-bot`)
+   - **Environment**: Select `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `python bot.py & python -m http.server $PORT`
+6. Click **Create Web Service**.
+
+Render will automatically build and start your bot, and serve a dummy page on the web port to satisfy Render's port-binding requirement, allowing your bot to run on the free tier. Note that free instances will spin down after 15 minutes of inactivity; you may want to ping the web service URL periodically (e.g., via cron-job.org) to keep it awake.

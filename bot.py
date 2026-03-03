@@ -20,8 +20,12 @@ payment_channel = "@pythonViewbooster"
 # Function to check if the user is a member of all required channels
 def is_member_of_channel(user_id):
   for channel in required_channels:
-    status = bot.get_chat_member(channel, user_id).status
-    if status not in ['member', 'administrator', 'creator']:
+    try:
+      status = bot.get_chat_member(channel, user_id).status
+      if status not in ['member', 'administrator', 'creator']:
+        return False
+    except Exception as e:
+      print(f"Error checking channel membership for {channel}: {e}")
       return False
   return True
 
